@@ -6,9 +6,12 @@ RUN mkdir /var/opt/sqlserver
 RUN mkdir /var/opt/sqlserver/data
 RUN mkdir /var/opt/sqlserver/log
 RUN mkdir /var/opt/sqlserver/backup
+RUN mkdir -p /usr/work
 
 RUN chown -R mssql /var/opt/sqlserver
+RUN chmod +x /usr/work/import-data.sh
 
 USER mssql
 
-CMD /opt/mssql/bin/sqlservr
+CMD /usr/work/import-data.sh & /opt/mssql/bin/sqlservr
+
