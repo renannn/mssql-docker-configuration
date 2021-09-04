@@ -13,5 +13,8 @@ RUN chmod +x /usr/work/import-data.sh
 
 USER mssql
 
+# enable the agent
+RUN sudo /opt/mssql/bin/mssql-conf set sqlagent.enabled true 
+
 CMD /usr/work/import-data.sh & /opt/mssql/bin/sqlservr
 
